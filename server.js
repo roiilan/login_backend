@@ -9,11 +9,9 @@ const app = express()
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
-const projRoutes = require('./api/proj/proj.routes')
 const authRoutes = require('./api/auth/auth.routes')
 const userRoutes = require('./api/user/user.routes')
-const reviewRoutes = require('./api/review/review.routes')
-const connectSockets = require('./api/socket/socket.routes')
+
 
 
 app.use(cookieParser())
@@ -38,12 +36,9 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // routes
-app.use('/api/proj', projRoutes)
 app.use('/api/auth', authRoutes)
 app.use('/api/user', userRoutes)
-app.use('/api/review', reviewRoutes)
-connectSockets(io)
-    // auth/signup
+       // auth/signup
 
 
 const logger = require('./services/logger.service')

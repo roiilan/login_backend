@@ -1,6 +1,4 @@
 const dbService = require('../../services/db.service')
-const reviewService = require('../review/review.service')
-const projService = require('../proj/projService')
 const ObjectId = require('mongodb').ObjectId
 
 module.exports = {
@@ -48,6 +46,8 @@ async function getByUsername(username) {
         throw err;
     }
 }
+
+// .getCollection('colections_name{changeMe}')
 
 async function remove(userId) {
     const collection = await dbService.getCollection('users')
