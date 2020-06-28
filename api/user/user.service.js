@@ -12,7 +12,7 @@ module.exports = {
 
 async function query(filterBy = {}) {
     const criteria = _buildCriteria(filterBy)
-    const collection = await dbService.getCollection('users')
+    const collection = await dbService.getCollection('colections_name')  // changeMe
 
     try {
         const users = await collection.find(criteria).toArray();
@@ -26,7 +26,7 @@ async function query(filterBy = {}) {
 }
 
 async function getById(userId) {
-    const collection = await dbService.getCollection('users')
+    const collection = await dbService.getCollection('colections_name')  // changeMe
     try {
         const user = await collection.findOne({ "_id": ObjectId(userId) })
         delete user.password
@@ -37,7 +37,7 @@ async function getById(userId) {
     }
 }
 async function getByUsername(username) {
-    const collection = await dbService.getCollection('users')
+    const collection = await dbService.getCollection('colections_name')  // changeMe
     try {
         const user = await collection.findOne({ username })
         return user
@@ -47,10 +47,9 @@ async function getByUsername(username) {
     }
 }
 
-// .getCollection('colections_name{changeMe}')
 
 async function remove(userId) {
-    const collection = await dbService.getCollection('users')
+    const collection = await dbService.getCollection('colections_name')  // changeMe
     try {
         await collection.deleteOne({ "_id": ObjectId(userId) })
     } catch (err) {
@@ -60,7 +59,7 @@ async function remove(userId) {
 }
 
 async function update(user, isSocket = false) {
-    const collection = await dbService.getCollection('users')
+    const collection = await dbService.getCollection('colections_name')  // changeMe
     const filterByForUser = {byId: user._id}
     const filterByForProj = {id: user._id}
     user._id = ObjectId(user._id);
@@ -97,7 +96,7 @@ async function update(user, isSocket = false) {
 }
 async function add(user) {
     user._id = ObjectId(user._id);
-    const collection = await dbService.getCollection('users')
+    const collection = await dbService.getCollection('colections_name')  // changeMe
     try {
         await collection.insertOne(user);
         return user;
